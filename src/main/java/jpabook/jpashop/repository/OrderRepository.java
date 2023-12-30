@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class OrderRepository {
     private final EntityManager em;
