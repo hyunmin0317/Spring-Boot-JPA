@@ -8,7 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,7 +26,7 @@ public class MemberApiController {
         List<Member> findMembers = memberService.findMembers();
         List<MemberDto> collect = findMembers.stream()
                 .map(m -> new MemberDto(m.getName()))
-                .collect(Collectors.toList());
+                .collect(toList());
         return new Result(collect.size(), collect);
     }
 
