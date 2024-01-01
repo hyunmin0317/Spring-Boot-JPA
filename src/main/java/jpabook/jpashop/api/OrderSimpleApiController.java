@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,6 +22,6 @@ public class OrderSimpleApiController {
         List<Order> orders = orderRepository.findAllByString(new OrderSearch());
         return orders.stream()
                 .map(SimpleOrderDto::new)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 }
