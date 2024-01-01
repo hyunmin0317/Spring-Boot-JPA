@@ -16,11 +16,6 @@ import static java.util.stream.Collectors.*;
 public class MemberApiController {
     private final MemberService memberService;
 
-    @GetMapping("/api/v1/members")
-    public List<Member> membersV1() {
-        return memberService.findMembers();
-    }
-
     @GetMapping("/api/v2/members")
     public Result membersV2() {
         List<Member> findMembers = memberService.findMembers();
@@ -28,12 +23,6 @@ public class MemberApiController {
                 .map(m -> new MemberDto(m.getName()))
                 .collect(toList());
         return new Result(collect.size(), collect);
-    }
-
-    @PostMapping("/api/v1/members")
-    public CreateMemberResponse saveMemberV1(@RequestBody @Valid Member member) {
-        Long id = memberService.join(member);
-        return new CreateMemberResponse(id);
     }
 
     @PostMapping("/api/v2/members")

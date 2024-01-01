@@ -1,4 +1,4 @@
-package jpabook.jpashop.repository;
+package jpabook.jpashop.repository.member;
 
 import jakarta.persistence.EntityManager;
 import jpabook.jpashop.domain.Member;
@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class MemberRepository {
+public class MemberRepositoryOld {
     private final EntityManager em;
 
     public Long save(Member member) {

@@ -6,7 +6,7 @@ import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.OrderItem;
 import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.repository.ItemRepository;
-import jpabook.jpashop.repository.MemberRepository;
+import jpabook.jpashop.repository.member.MemberRepository;
 import jpabook.jpashop.repository.order.OrderRepository;
 import jpabook.jpashop.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ public class OrderService {
 
     @Transactional
     public Long order(Long memberId, Long itemId, int count) {
-        Member member = memberRepository.findOne(memberId);
+        Member member = memberRepository.findById(memberId).get();
         Item item = itemRepository.findOne(itemId);
         Delivery delivery = new Delivery();
         delivery.setAddress(member.getAddress());
