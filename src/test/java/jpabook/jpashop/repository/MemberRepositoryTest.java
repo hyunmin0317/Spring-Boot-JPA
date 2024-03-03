@@ -20,15 +20,15 @@ class MemberRepositoryTest {
     public void testMember() throws Exception {
         //given
         Member member = new Member();
-        member.setUsername("memberA");
+        member.setName("memberA");
 
         //when
         Long saveId = memberRepository.save(member);
-        Member findMember = memberRepository.find(saveId);
+        Member findMember = memberRepository.findOne(saveId);
 
         //then
         Assertions.assertEquals(findMember.getId(), member.getId());
-        Assertions.assertEquals(findMember.getUsername(), member.getUsername());
+        Assertions.assertEquals(findMember.getName(), member.getName());
 
         // 같은 트랜잭션에서 동일 id -> 영속성 컨텍스트에서 갖고옴
         Assertions.assertEquals(findMember, member);    // true
