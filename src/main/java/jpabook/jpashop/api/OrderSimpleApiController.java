@@ -1,6 +1,7 @@
 package jpabook.jpashop.api;
 
 import jpabook.jpashop.domain.Order;
+import jpabook.jpashop.dto.SimpleOrderDto;
 import jpabook.jpashop.repository.OrderRepository;
 import jpabook.jpashop.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
@@ -29,5 +30,13 @@ public class OrderSimpleApiController {
             order.getDelivery().getAddress(); //Lazy 강제 초기화
         }
         return all;
+    }
+
+    @GetMapping("/api/v2/simple-orders")
+    public List<SimpleOrderDto> ordersV2() {
+        List<Order> orders = orderRepository.findAllByString(new OrderSearch());
+        return orders.stream()
+                .map(SimpleOrderDto::new)
+                .toList();
     }
 }
