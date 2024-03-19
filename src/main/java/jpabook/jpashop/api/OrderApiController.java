@@ -9,6 +9,7 @@ import jpabook.jpashop.dto.OrderQueryDto;
 import jpabook.jpashop.repository.OrderRepository;
 import jpabook.jpashop.repository.OrderSearch;
 import jpabook.jpashop.repository.order.query.OrderQueryRepository;
+import jpabook.jpashop.service.query.OrderQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,6 +43,7 @@ public class OrderApiController {
 
     private final OrderRepository orderRepository;
     private final OrderQueryRepository orderQueryRepository;
+    private final OrderQueryService orderQueryService;
 
     /**
      * V1. 엔티티 직접 노출
@@ -88,6 +90,11 @@ public class OrderApiController {
         return orders.stream()
                 .map(OrderDto::new)
                 .toList();
+    }
+
+    @GetMapping("/api/v3.2/orders")
+    public List<OrderDto> ordersV3_osiv() {
+        return orderQueryService.ordersV3_osiv();
     }
 
     @GetMapping("/api/v4/orders")
